@@ -1,7 +1,42 @@
 [package]
-name = "rust-poc"
+name = "my_project"
 version = "0.1.0"
-authors = ["Nadeem"]
-edition = "2024"
+authors = ["Your Name <you@example.com>"]
+edition = "2021"
+description = "A Rust project example"
+license = "MIT"
+repository = "https://github.com/your_username/my_project"
+readme = "README.md"
+keywords = ["rust", "example", "project"]
+categories = ["command-line-utilities", "development-tools"]
+documentation = "https://docs.rs/my_project"
+homepage = "https://yourprojecthomepage.com"
 
 [dependencies]
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1.32", features = ["full"] }
+reqwest = "0.11"
+
+[dev-dependencies]
+tokio-test = "0.4"
+mockito = "1.0"
+
+[build-dependencies]
+cc = "1.0"
+
+[features]
+default = ["feature1"]
+feature1 = []
+feature2 = ["serde", "tokio"]
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+debug = true
+
+[workspace]
+members = ["crates/*"]
+
+[[bin]]
+name = "my_project"
+path = "src/main.rs"
